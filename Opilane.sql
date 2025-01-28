@@ -58,3 +58,25 @@ select * from opilane;
 --andmete uuendamine
 UPDATE opilane SET aadress='Tartu'
 WHERE opilaneId=3
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Vigane kood
+Create table oppimine(
+oppimineId int primary key identity(1,1),
+aine varchar(12) not null,
+aasta date not null,
+opetaja varchar(10),
+opilaneId int,
+Foreign key (opilaneId) references Language(ID),
+hinne int,
+)
+INSERT INTO oppimine(
+aine,
+aasta,
+opetaja,
+opilaneId,
+hinne)
+
+VALUES('Keemia', 2020-10-25,'Merkulova', '2', 5)
+select * from oppimine
+
+drop table oppimine;
