@@ -15,3 +15,4 @@ taastamine - восстановление из бкап копии
 päringukeel - язык запросов
 relatsiooni andmebaas - реалюционная база даных
 seos - связь
+Primary key - primaarne võti - первичный ключ
