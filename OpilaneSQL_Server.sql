@@ -1,6 +1,6 @@
 --AB loomine
 Create database LukkBaas;
-
+--identity(1,1) - для автоматической нумерации
 use LukkBaas;
 CREATE TABLE opilane(
 opilaneId int primary key identity(1,1),
