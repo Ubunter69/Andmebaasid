@@ -80,6 +80,100 @@ END;
 DROP PROCEDURE rahvaArvuUuendus;
 
 EXEC rahvaArvuUuendus 8, 1.2;
+
+CREATE TABLE opilane(
+opilaneId int primary key identity(1,1),
+eesnimi varchar(25) not null,
+perenimi varchar(25) not null,
+synniaeg date, 
+stip bit,
+aadress text,
+keskmine_hinne decimal(2,1)
+)
+select * from opilane;
+INSERT INTO opilane(
+eesnimi,
+perenimi,
+synniaeg,
+stip,
+aadress,
+keskmine_hinne)
+VALUES(
+'Marek',
+'Lukk',
+'2004-10-27',
+1,
+'aadress',
+4.5),
+(
+'Pork',
+'Maksonik',
+'2004-10-27',
+1,
+'aadress',
+4.2),
+(
+'Pork',
+'Maksonik',
+'2004-10-27',
+1,
+'aadress',
+4.4),
+(
+'Mark',
+'Gabella',
+'2000-4-20',
+1,
+'aadress',
+4.4)
+CREATE PROCEDURE lisaOpilane
+@eesnimi varchar(25),
+@perenimi varchar(25),
+@synniaeg date, 
+@stip bit,
+@aadress text,
+@keskmine_hinne decimal(2,1)
+
+AS
+BEGIN
+insert into opilane(eesnimi, perenimi, synniaeg, stip, aadress, keskmine_hinne)
+values (@eesnimi, @perenimi, @synniaeg, @stip, @aadress, @keskmine_hinne);
+select * from opilane;
+END;
+exec lisaOpilane 'Igor', 'Igor', '2020-8-27', 1, 'treoteptr', 4.2
+
+
+CREATE PROCEDURE kustutaOpilane
+@deleteID int
+AS
+BEGIN
+select * from opilane;
+delete from opilane where opilaneID=@deleteID;
+select * from opilane;
+END;
+exec kustutaOpilane 5;
+
+CREATE PROCEDURE opilaneOtsing
+@taht char(1)
+as
+begin
+SELECT * FROM opilane WHERE eesnimi LIKE @taht + '%';
+end;
+exec opilaneOtsing M;
+
+UPDATE opilane set 
+select * from opilane;
+update opilane set stip=0 where opilaneId=1
+CREATE PROCEDURE stipVahetus
+@opilaneId int,
+@stip bit
+AS
+BEGIN
+UPDATE opilane set stip=1 where opilaneId=@opilaneId
+select * from opilane;
+END;
+EXEC stipVahetus 4, 0;
+drop procedure stipVahetus;
 ------------------------------------------------------------------------------------------------------------------------------------
 Kasutame XAMPP / localhost
 create table linn(
