@@ -63,6 +63,15 @@ end;
 exec linnaOtsing T;
 ------------------------------------------------------------------------------------------------------------------------------------
 Kasutame XAMPP / localhost
+create table linn(
+linnId int PRIMARY KEY AUTO_INCREMENT,
+linnNimi varchar(30),
+rahvaArv int);
+
+insert into linn(linnNimi, rahvaArv)
+values ('Tartu', 30000),
+('Tallinn', 60000),
+('Pärnu', 40000);
 
 
 
