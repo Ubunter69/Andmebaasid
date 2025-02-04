@@ -73,5 +73,13 @@ values ('Tartu', 30000),
 ('Tallinn', 60000),
 ('Pärnu', 40000);
 
+BEGIN
+
+insert into linn(linnNimi, rahvaArv)
+values (linnNimi, rahvaArv);
+select* from linn;
+
+END
+
 
 
