@@ -61,6 +61,25 @@ WHERE linnNimi LIKE @taht + '%';
 end;
 --kutse
 exec linnaOtsing T;
+
+--tabeli uuendamine - rahvaarv kasvab 10% võrra
+UPDATE linn SET rahvaArv=rahvaArv*1.1
+SELECT * FROM linn;
+UPDATE linn SET rahvaArv=rahvaArv*1.1
+WHERE linnId=8
+CREATE PROCEDURE rahvaArvuUuendus
+@linnID int,
+@koef decimal(2,1)
+AS
+BEGIN
+UPDATE linn SET rahvaArv=rahvaArv*@koef
+WHERE linnId=@linnID;
+SELECT * FROM linn;
+END;
+
+DROP PROCEDURE rahvaArvuUuendus;
+
+EXEC rahvaArvuUuendus 8, 1.2;
 ------------------------------------------------------------------------------------------------------------------------------------
 Kasutame XAMPP / localhost
 create table linn(
