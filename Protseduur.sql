@@ -285,6 +285,56 @@ END;
 
 EXEC KokkuRahvaarv;
 drop procedure KokkuRahvaarv;
+-------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE SteamMangija(
+MängijaId int primary key identity(1,1),
+nimi varchar(30),
+vanus int,
+linn varchar(30),
+lemmikmäng varchar(30)
+);
+select *from SteamMangija;
+DROP TABLE SteamMangija;
+INSERT INTO SteamMangija(nimi, vanus, linn, lemmikmäng)
+values ('Maksim', 16, 'Tallinn', 'Dota2'), 
+('Artjom', 20, 'Tallinn', 'ARK'), 
+('Martin', 16, 'Tallinn', 'Dota2'), 
+('Mark', 10, 'Narva', 'Roblox'),
+('Marek', 19, 'Pärnu', 'Dota2');
+
+CREATE PROCEDURE lisaMängija
+@nimi varchar(20),
+@vanus int,
+@linn varchar(20),
+@lemmikmäng varchar(30)
+
+AS
+BEGIN
+insert into SteamMangija(nimi, vanus, linn, lemmikmäng)
+values (@nimi, @vanus, @linn, @lemmikmäng);
+select * from SteamMangija;
+END;
+
+exec lisaMängija 'Ilja', 13, 'Tartu', 'Cs2'
+
+CREATE PROCEDURE kustutaMängija
+@deleteID int
+AS
+BEGIN
+select * from SteamMangija;
+delete from SteamMangija where MängijaID=@deleteID
+select * from SteamMangija;
+END;
+
+EXEC kustutaMängija 7;
+
+CREATE PROCEDURE MängijaOtsing
+@taht char(1)
+as
+begin
+SELECT * FROM SteamMangija WHERE nimi LIKE @taht + '%';
+end;
+exec MängijaOtsing A;
 
 ------------------------------------------------------------------------------------------------------------------------------------
 Kasutame XAMPP / localhost
