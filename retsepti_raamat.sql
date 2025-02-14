@@ -113,3 +113,63 @@ values ('2025-10-27', 1),
 ('2025-10-27', 4),
 ('2023-10-27', 5);
 select * from tehtud;
+
+CREATE PROCEDURE lisaRetsept
+@retsepti_nimi varchar(100),
+@kirjeldus varchar(500),
+@juhend varchar(500),
+@sisestatud_kp date,
+@kasutaja_id int,
+@kategooria_id int
+
+AS
+BEGIN
+
+insert into Retsept(retsepti_nimi, kirjeldus, juhend, sisestatud_kp, kasutaja_id, kategooria_id)
+values (@retsepti_nimi, @kirjeldus, @juhend, @sisestatud_kp, @kasutaja_id, @kategooria_id);
+select* from Retsept;
+
+END
+
+exec lisaRetsept 'KalaSupp', 'Keeda vett', 'Kasuta elektri pliit', '2024-12-10', 2, 2
+
+--KoostiseLisamine
+CREATE PROCEDURE lisaKoostis
+@kogus int,
+@retsept_retsept_id int,
+@toiduaine_id int,
+@yhik_id int
+AS
+BEGIN
+
+insert into koostis(kogus, retsept_retsept_id, toiduaine_id, yhik_id)
+values (@kogus, @retsept_retsept_id, @toiduaine_id, @yhik_id);
+select* from koostis;
+
+END
+
+exec lisaKoostis 2, 5, 1, 2
+drop procedure lisaKoostis;
+
+--
+create procedure veeruLisaKustutaTabelis
+@valik varchar(20),
+@tabelinimi varchar(20),
+@veerunimi varchar(20),
+@tüüp varchar (20) =null
+
+AS
+BEGIN
+Declare @sqltegevus as varchar(max)
+set @sqltegevus=case
+when @valik='add' then concat('ALTER TABLE ', @tabelinimi, ' ADD ', @veerunimi, ' ', @tüüp)
+when @valik='drop' then concat('ALTER TABLE ', @tabelinimi, ' DROP COLUMN ', @veerunimi)
+END;
+print @sqltegevus;
+begin
+EXEC (@sqltegevus);
+END;
+END;
+--KUTSE
+EXEC veeruLisaKustutaTabelis @valik='add', @tabelinimi='retsept', @veerunimi='test3', @tüüp='int';
+select * from Retsept;
