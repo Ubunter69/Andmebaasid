@@ -173,3 +173,53 @@ END;
 --KUTSE
 EXEC veeruLisaKustutaTabelis @valik='add', @tabelinimi='retsept', @veerunimi='test3', @tüüp='int';
 select * from Retsept;
+
+
+
+--Ülesanne
+
+CREATE TABLE ToiduaineValmistamisemeetod(
+meetodi_id int primary key identity(1,1),
+toidu_id int,
+meetod varchar(50),
+Valmistamise_aeg int,
+foreign key (toidu_id) references toiduaine(toiduaine_id)
+);
+
+insert into ToiduaineValmistamisemeetod(
+meetod, Valmistamise_aeg, toidu_id)
+values ('Prae', '20' , 1),
+('Keeda', '10' , 2),
+('Grillil', '5' , 3),
+('Prae', '15' , 6),
+('Prae', '20' , 7);
+
+drop table ToiduaineValmistamisemeetod;
+
+
+CREATE PROCEDURE lisaMeetod
+@meetod varchar(50),
+@Valmistamise_aeg int,
+@toidu_id int
+
+AS
+BEGIN
+
+insert into ToiduaineValmistamisemeetod(meetod, Valmistamise_aeg, toidu_id)
+values (@meetod, @Valmistamise_aeg, @toidu_id);
+select* from ToiduaineValmistamisemeetod;
+
+END
+exec lisaMeetod 'prae', '30', '10'
+drop procedure lisaMeetod;
+
+CREATE PROCEDURE kustutaMeetod
+@deleteID int
+AS
+BEGIN
+select * from ToiduaineValmistamisemeetod;
+delete from ToiduaineValmistamisemeetod where meetodi_id=@deleteID
+select * from ToiduaineValmistamisemeetod;
+END;
+
+EXEC kustutaMeetod 6;
