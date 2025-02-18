@@ -1,0 +1,28 @@
+Kirjuta oma nimi: 
+SQL - 
+DDL -
+DML - 
+Database - 
+Database management system - 
+Related table - 
+Relational database - 
+Relationship - 
+ 
+Primary Key - 
+Foreign Key - 
+One-to-many relationship - 
+One-to-one relationship - 
+Query - 
+Report - 
+Form - 
+Data type / varchar, char, int, decimal, text, bit, bool, date, time, blob
+--------------------------
+Constraints - 
+
+NOT NULL - 
+UNIQUE - 
+PRIMARY KEY - 
+FOREIGN KEY - 
+CHECK - 
+DEFAULT - 
+CREATE INDEX - 
