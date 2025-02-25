@@ -47,3 +47,6 @@ insert into Autod(Mark, regnumber, aasta, reg) values ('Nissan', '555 NNN', '200
  select mark, aasta from Autod where reg = 2;
  --SQL Server
  --Security-->Login-->new login
+--anname õigis kasutajale opilaneMarek vaadata tabeli auto sisu--
+GRANT SELECT ON autod TO opilaneMarek;--разрешение для пользователя
+GRANT Update On autod to opilaneMarek;--разрешение для пользователя
