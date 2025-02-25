@@ -20,3 +20,4 @@ Foreign key - вторичный ключ
 
 LEN funktsioon - отвечает за длинну текста
 right funktsioon - выбирает правый символ в столбце
+UPDATE auto SET automark='opel' where autoID=3;-КОМАНДА НА ОБНОВЛЕНИЕ ТАБЛИЦЫ 
