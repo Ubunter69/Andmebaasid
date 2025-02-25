@@ -17,3 +17,6 @@ relatsiooni andmebaas - реалюционная база даных
 seos - связь
 Primary key - primaarne võti - первичный ключ
 Foreign key - вторичный ключ
+
+LEN funktsioon - отвечает за длинну текста
+right funktsioon - выбирает правый символ в столбце
